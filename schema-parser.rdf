@@ -1,5 +1,10 @@
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-xmlns:schema-parser="http://www.redhat.com/2013/schema-parser#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:owl="http://www.w3.org/2002/07/owl#">
+<rdf:RDF 
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+xmlns:schema-parser="http://www.redhat.com/2013/schema-parser#" 
+xmlns:owl="http://www.w3.org/2002/07/owl#"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
     <owl:Ontology rdf:about="http://www.redhat.com/2013/schema-parser#">
         <dc:title>The schema.org parser Vocabulary</dc:title>
         <dc:description>This is the schema.org parser Schema for the schema.org parser vocabulary.</dc:description>
@@ -8,114 +13,164 @@ xmlns:schema-parser="http://www.redhat.com/2013/schema-parser#" xmlns:dc="http:/
         <rdfs:comment>This is a namespace for describing relations and errors in schema-parser
             project..</rdfs:comment>
     </rdf:Description>
-    <rdfs:Class rdf:about="http://www.redhat.com/2013/schema-parser#relationship">
-        <rdfs:label xml:lang="en">Relationship</rdfs:label>
-        <rdfs:comment>Node's Relationships</rdfs:comment>
-        <rdfs:isDefinedBy rdf:resource="http://www.redhat.com/2013/schema-parser#"
-        /></rdfs:Class>
-    <rdfs:Class rdf:about="http://www.redhat.com/2013/schema-parser#error">
-        <rdfs:label xml:lang="en">error</rdfs:label>
+    
+        
+    <rdfs:Class rdf:about="http://www.redhat.com/2013/schema-parser#Error">
+        <rdfs:label xml:lang="en">Error</rdfs:label>
         <rdfs:comment>Errors in schema-parser project.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.redhat.com/2013/schema-parser#"
         /></rdfs:Class>
-    <rdf:Property rdf:about="http://www.redhat.com/2013/schema-parser#rootNodeOf">
-        <rdfs:label xml:lang="en">rootNodes</rdfs:label>
+        
+        
+    <rdfs:Class rdf:about="http://www.redhat.com/2013/schema-parser#Thing">
+        <rdfs:label xml:lang="en">Thing</rdfs:label>
+        <rdfs:comment>Thing : a root class</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.redhat.com/2013/schema-parser#"
+        /></rdfs:Class>
+        
+        
+         <rdf:Property rdf:about="http://www.redhat.com/2013/schema-parser#rootNodeOf">
+        <rdfs:label xml:lang="en">Root Node</rdfs:label>
         <rdfs:comment>Indicates independent nodes as root nodes.</rdfs:comment>
         <rdfs:isDefinedBy
         rdf:resource="http://www.redhat.com/2013/schema-parser#" />
-        <rdfs:domain rdf:resource="http://www.redhat.com/2013/schema-parser#relationship"
+        <rdfs:domain rdf:resource="http://www.redhat.com/2013/schema-parser#Thing"
         />
-        <rdfs:range rdf:resource="http://www.redhat.com/2013/schema-parser#relationship"
+        <rdfs:range rdf:resource="#url"
         />
     </rdf:Property>
+    
+    
     <rdf:Property rdf:about="http://www.redhat.com/2013/schema-parser#nestedIn">
-        <rdfs:label xml:lang="en">Nested Nodes</rdfs:label>
+        <rdfs:label xml:lang="en">Nested Node</rdfs:label>
         <rdfs:comment>Indicates nodes inside others.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.redhat.com/2013/schema-parser#"
         />
-        <rdfs:domain rdf:resource="http://www.redhat.com/2013/schema-parser#relationship"
+        <rdfs:domain rdf:resource="http://www.redhat.com/2013/schema-parser#Thing"
         />
-        <rdfs:range rdf:resource="http://www.redhat.com/2013/schema-parser#relationship"
-        />
-    </rdf:Property>
-    <rdf:Property rdf:about="http://www.redhat.com/2013/schema-parser#invalidType">
-        <rdfs:label xml:lang="en">Invalid Schema Type</rdfs:label>
-        <rdfs:comment>Indicated type does not belong to schema.org types</rdfs:comment>
-        <rdfs:isDefinedBy
-        rdf:resource="http://www.redhat.com/2013/schema-parser#" />
-        <rdfs:domain rdf:resource="http://www.redhat.com/2013/schema-parser#error"
-        />
-        <rdfs:range rdf:resource="http://www.redhat.com/2013/schema-parser#error"
+        <rdfs:range rdf:resource="http://www.redhat.com/2013/schema-parser#Thing"
         />
     </rdf:Property>
-    <rdf:Property rdf:about="http://www.redhat.com/2013/schema-parser#notPropertyOfType">
-        <rdfs:label xml:lang="en">Invalid Schema Property</rdfs:label>
-        <rdfs:comment>Indicated property does not belong to schema.org properties</rdfs:comment>
-        <rdfs:isDefinedBy
-        rdf:resource="http://www.redhat.com/2013/schema-parser#" />
-        <rdfs:domain rdf:resource="http://www.redhat.com/2013/schema-parser#error"
-        />
-        <rdfs:range rdf:resource="http://www.redhat.com/2013/schema-parser#error"
-        />
-    </rdf:Property>
-    <rdf:Property rdf:about="http://www.redhat.com/2013/schema-parser#propertyNotExpectedType">
-        <rdfs:label xml:lang="en">Invalid property type</rdfs:label>
-        <rdfs:comment>Indicated type does not match to schema.org expected types</rdfs:comment>
-        <rdfs:isDefinedBy
-        rdf:resource="http://www.redhat.com/2013/schema-parser#" />
-        <rdfs:domain rdf:resource="http://www.redhat.com/2013/schema-parser#error"
-        />
-        <rdfs:range rdf:resource="http://www.redhat.com/2013/schema-parser#error"
-        />
-    </rdf:Property>
-    <rdf:Property rdf:about="http://www.redhat.com/2013/schema-parser#missingItemScope">
-        <rdfs:label xml:lang="en">Missing Scope</rdfs:label>
-        <rdfs:comment>No itemscope beside itemtype in schema.org markups.</rdfs:comment>
-        <rdfs:isDefinedBy
-        rdf:resource="http://www.redhat.com/2013/schema-parser#" />
-        <rdfs:domain rdf:resource="http://www.redhat.com/2013/schema-parser#error"
-        />
-        <rdfs:range rdf:resource="http://www.redhat.com/2013/schema-parser#error"
-        />
-    </rdf:Property>
-    <rdf:Property rdf:about="http://www.redhat.com/2013/schema-parser#orphanedProperty">
-        <rdfs:label xml:lang="en">Orphaned Property</rdfs:label>
-        <rdfs:comment>Indicated property does not belong to any schema.org type.</rdfs:comment>
-        <rdfs:isDefinedBy
-        rdf:resource="http://www.redhat.com/2013/schema-parser#" />
-        <rdfs:domain rdf:resource="http://www.redhat.com/2013/schema-parser#error"
-        />
-        <rdfs:range rdf:resource="http://www.redhat.com/2013/schema-parser#error"
-        />
-    </rdf:Property>
-    <rdf:Property rdf:about="http://www.redhat.com/2013/schema-parser#itemtypeWithoutItemprop">
+    
+    <rdfs:Class rdf:about="http://www.redhat.com/2013/schema-parser#Warning">
+        <rdfs:label xml:lang="en">Warning</rdfs:label>
+        <rdfs:comment>Warning inclouds missingItemScope and itemtypeWithoutAnyProperty</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.redhat.com/2013/schema-parser#"/>   
+        <rdfs:subClassOf rdf:resource="http://www.redhat.com/2013/schema-parser#Error"/>
+    </rdfs:Class>
+    
+      <rdf:Property rdf:about="http://www.redhat.com/2013/schema-parser#itemtypeWithoutAnyProperty">
         <rdfs:label xml:lang="en">Childless Type</rdfs:label>
         <rdfs:comment>Indicated type does have any property assigned to it.</rdfs:comment>
-        <rdfs:isDefinedBy
-        rdf:resource="http://www.redhat.com/2013/schema-parser#" />
-        <rdfs:domain rdf:resource="http://www.redhat.com/2013/schema-parser#error"
-        />
-        <rdfs:range rdf:resource="http://www.redhat.com/2013/schema-parser#error"
-        />
+        <rdfs:isDefinedBy rdf:resource="http://www.redhat.com/2013/schema-parser#" />
+        <rdfs:domain rdf:resource="http://www.redhat.com/2013/schema-parser#Warning"/>
+        
+        <!-- DEFINE ITEM RANGE: IS IT ERROR OR STRING? --> 
+        <rdfs:range rdf:resource="http://www.redhat.com/2013/schema-parser#Error"/>
+        <!-- OR -->
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <!-- OR -->
+        <rdfs:range rdf:resource="http://www.redhat.com/2013/schema-parser#Node"/>
+        <!-- End of question -->
+        
     </rdf:Property>
-    <rdf:Property rdf:about="http://www.redhat.com/2013/schema-parser#itemscopeWithoutItemtype">
-        <rdfs:label xml:lang="en">Missing ItemType</rdfs:label>
+    
+     <rdf:Property rdf:about="http://www.redhat.com/2013/schema-parser#missingItemScope">
+        <rdfs:label xml:lang="en">Missing Scope</rdfs:label>
+        <rdfs:comment>No itemscope beside itemtype in schema.org markups.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.redhat.com/2013/schema-parser#" />
+        <rdfs:domain rdf:resource="http://www.redhat.com/2013/schema-parser#Warning"/>
+        
+        <!-- DEFINE ITEM RANGE: IS IT ERROR OR STRING? --> 
+        <rdfs:range rdf:resource="http://www.redhat.com/2013/schema-parser#Error"/>
+        <!-- OR -->
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <!-- OR -->
+        <rdfs:range rdf:resource="http://www.redhat.com/2013/schema-parser#Node"/>
+        <!-- End of question -->
+        
+    </rdf:Property>
+    
+    
+    <rdfs:Class rdf:about="http://www.redhat.com/2013/schema-parser#invalidProperty">
+        <rdfs:label xml:lang="en">Invalid Property</rdfs:label>
+        <rdfs:comment>The property is : 1- not a valid property for Type 2-an unintelligible property</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.redhat.com/2013/schema-parser#"/>   
+        <rdfs:subClassOf rdf:resource="http://www.redhat.com/2013/schema-parser#Error"/>
+    </rdfs:Class>
+    
+    
+    <rdfs:Class rdf:about="http://www.redhat.com/2013/schema-parser#notValidPropertyForType">
+        <rdfs:label xml:lang="en">Invalid Property Of Type</rdfs:label>
+        <rdfs:comment>The property is an unintelligible property</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.redhat.com/2013/schema-parser#"/>   
+        <rdfs:subClassOf rdf:resource="http://www.redhat.com/2013/schema-parser#invalidProperty"/>
+    </rdfs:Class>
+    
+    
+    
+    <rdfs:Class rdf:about="http://www.redhat.com/2013/schema-parser#unintelligibleProperty">
+        <rdfs:label xml:lang="en">Unintelligible Property</rdfs:label>
+        <rdfs:comment>The property is not a valid property for Type</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.redhat.com/2013/schema-parser#"/>   
+        <rdfs:subClassOf rdf:resource="http://www.redhat.com/2013/schema-parser#invalidProperty"/>
+    </rdfs:Class>
+    
+    
+     <rdf:Property rdf:about="http://www.redhat.com/2013/schema-parser#specifiedProperty">
+        <rdfs:label xml:lang="en">Specified Property</rdfs:label>
+        <rdfs:comment>The value of property attribute</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.redhat.com/2013/schema-parser#" />
+        <rdfs:domain rdf:resource="http://www.redhat.com/2013/schema-parser#invalidProperty"/>
+        <rdfs:range rdf:resource="http://www.redhat.com/2013/schema-parser#Error"/>
+    </rdf:Property>
+    
+     <rdfs:Class rdf:about="http://www.redhat.com/2013/schema-parser#invalidType">
+        <rdfs:label xml:lang="en">Invalid Type</rdfs:label>
+        <rdfs:comment>The type is : 1- not an expected type for the property 2-an unintelligible type</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.redhat.com/2013/schema-parser#"/>   
+        <rdfs:subClassOf rdf:resource="http://www.redhat.com/2013/schema-parser#Error"/>
+    </rdfs:Class>
+    
+    
+    <rdfs:Class rdf:about="http://www.redhat.com/2013/schema-parser#notExpectedType">
+        <rdfs:label xml:lang="en">Unexpected type</rdfs:label>
+        <rdfs:comment>The type is not an expected type for the property</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.redhat.com/2013/schema-parser#"/>   
+        <rdfs:subClassOf rdf:resource="http://www.redhat.com/2013/schema-parser#invalidType"/>
+    </rdfs:Class>
+    
+    
+    
+    <rdfs:Class rdf:about="http://www.redhat.com/2013/schema-parser#unintelligibleType">
+        <rdfs:label xml:lang="en">Unintelligible type</rdfs:label>
+        <rdfs:comment>The type is not a valid type of schema.org</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.redhat.com/2013/schema-parser#"/>   
+        <rdfs:subClassOf rdf:resource="http://www.redhat.com/2013/schema-parser#invalidType"/>
+    </rdfs:Class>
+    
+    
+    <rdf:Property rdf:about="http://www.redhat.com/2013/schema-parser#specifiedType">
+        <rdfs:label xml:lang="en">Specified Type</rdfs:label>
+        <rdfs:comment>The value of type attribute</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.redhat.com/2013/schema-parser#" />
+        <rdfs:domain rdf:resource="http://www.redhat.com/2013/schema-parser#invalidType"/>
+        <rdfs:range rdf:resource="http://www.redhat.com/2013/schema-parser#Error"/>
+    </rdf:Property>
+    
+   
+    <rdfs:Class rdf:about="http://www.redhat.com/2013/schema-parser#orphanedProperty">
+        <rdfs:label xml:lang="en">Orphaned Property</rdfs:label>
+        <rdfs:comment>Indicated property does not belong to any schema.org type.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://www.redhat.com/2013/schema-parser#"/>   
+        <rdfs:subClassOf rdf:resource="http://www.redhat.com/2013/schema-parser#Error"/>
+    </rdfs:Class>
+    
+    <rdfs:Class rdf:about="http://www.redhat.com/2013/schema-parser#itemscopeWithoutItemtype">
+        <rdfs:label xml:lang="en">Missing ItemTypey</rdfs:label>
         <rdfs:comment>There is not any itemtype beside itemscope</rdfs:comment>
-        <rdfs:isDefinedBy
-        rdf:resource="http://www.redhat.com/2013/schema-parser#" />
-        <rdfs:domain rdf:resource="http://www.redhat.com/2013/schema-parser#error"
-        />
-        <rdfs:range rdf:resource="http://www.redhat.com/2013/schema-parser#error"
-        />
-    </rdf:Property>
-    <rdf:Property rdf:about="http://www.redhat.com/2013/schema-parser#missingVocabOrPrefix">
-        <rdfs:label xml:lang="en">Missing Vocab or Prefix</rdfs:label>
-        <rdfs:comment>Schema.org types have been detected in the RDFa markup, but there is no schema.org vocab declaration</rdfs:comment>
-        <rdfs:isDefinedBy rdf:resource="http://www.redhat.com/2013/schema-parser#"
-        />
-        <rdfs:domain rdf:resource="http://www.redhat.com/2013/schema-parser#error"
-        />
-        <rdfs:range rdf:resource="http://www.redhat.com/2013/schema-parser#error"
-        />
-    </rdf:Property>
+        <rdfs:isDefinedBy rdf:resource="http://www.redhat.com/2013/schema-parser#"/>   
+        <rdfs:subClassOf rdf:resource="http://www.redhat.com/2013/schema-parser#Error"/>
+    </rdfs:Class>
+   
 </rdf:RDF>
